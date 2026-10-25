@@ -48,7 +48,7 @@ jobs:
         run: npm run build
 
       - name: Validate Firefox bundle (web-ext lint)
-        run: npm run lint:webext -w @bpmn-io-browser-plugin/extension
+        run: npm run lint:webext -w @diagit/extension
 
   e2e:
     name: E2E (${{ matrix.browser }})
@@ -74,9 +74,9 @@ jobs:
         run: npm ci
 
       - name: Build extension (E2E)
-        run: npm run e2e:build -w @bpmn-io-browser-plugin/extension
+        run: npm run e2e:build -w @diagit/extension
 
       - name: E2E tests
-        run: npm run test:e2e -w @bpmn-io-browser-plugin/extension
+        run: npm run test:e2e -w @diagit/extension
         env:
           WDIO_BROWSERS: ${{ matrix.browser }}

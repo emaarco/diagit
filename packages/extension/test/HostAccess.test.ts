@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { HostAccess, type BrowserAccessApi } from '../src/host-access/HostAccess'
-import { ScriptRegistrar, type ScriptingApi } from '../src/host-access/ScriptRegistrar'
-import { SelfHostedHostStore } from '../src/host-access/SelfHostedHostStore'
-import { SettingsStore } from '../src/settings/SettingsStore'
+import { HostAccess, type BrowserAccessApi } from '../src/git-hosts/self-hosted/HostAccess'
+import { ScriptRegistrar, type ScriptingApi } from '../src/git-hosts/self-hosted/ScriptRegistrar'
+import { SelfHostedHostStore } from '../src/git-hosts/self-hosted/SelfHostedHostStore'
+import { SettingsStore } from '../src/platform/settings/SettingsStore'
 import { hostRegistry } from '../src/git-hosts/hosts'
 import { MemoryStorageArea } from './fakes/MemoryStorageArea'
 

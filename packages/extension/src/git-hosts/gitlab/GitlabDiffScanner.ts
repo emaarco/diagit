@@ -1,17 +1,17 @@
-import type { ChangedFile } from '../../diff/DiffSource'
-import { DIFF_PANEL_TAG } from '../../injectedElements'
-import { kindDetector, type KindDetector } from '../../kinds/KindDetector'
-import { hasRenderedBox } from '../../utils/isRendered'
+import type { ChangedFile } from '../DiffSource'
+import { DIFF_PANEL_TAG } from '../../platform/injectedElements'
+import { notationDetector, type NotationDetector } from '../../notations/NotationDetector'
+import { hasRenderedBox } from '../../platform/utils/isRendered'
 import { gitlabSelectors } from './gitlabSelectors'
 
 export class GitlabDiffScanner {
-  constructor(private readonly kinds: KindDetector = kindDetector) {}
+  constructor(private readonly notations: NotationDetector = notationDetector) {}
 
   scan(doc: Document): ChangedFile[] {
     const files: ChangedFile[] = []
     doc.querySelectorAll<HTMLElement>(gitlabSelectors.diff.fileRoot).forEach((root) => {
       const path = this.filePathOf(root)
-      if (!path || !this.kinds.isDiffable(path)) return
+      if (!path || !this.notations.isDiffable(path)) return
       files.push({
         path,
         anchor: this.contentOf(root),

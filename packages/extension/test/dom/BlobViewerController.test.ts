@@ -1,11 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { BlobPage } from '../../src/git-hosts/BlobPage'
-import { HOST_TAG } from '../../src/injectedElements'
-import { BlobViewerController } from '../../src/page/BlobViewerController'
-import { HostPage } from '../../src/page/HostPage'
+import { HOST_TAG } from '../../src/platform/injectedElements'
+import { BlobViewerController } from '../../src/views/blob-viewer/BlobViewerController'
+import { HostPage } from '../../src/platform/page/HostPage'
 import { FakeContentScriptContext } from '../fakes/FakeContentScriptContext'
 import { FakeHttpClient } from '../fakes/FakeHttpClient'
-import { FakeKindLookup } from '../fakes/FakeKindLookup'
+import { FakeNotationLookup } from '../fakes/FakeNotationLookup'
 
 const context = new FakeContentScriptContext()
 
@@ -39,7 +39,7 @@ describe('BlobViewerController', () => {
     new BlobViewerController(
       pageAt('/o/r/blob/main/order.bpmn'),
       blobPage,
-      new FakeKindLookup(),
+      new FakeNotationLookup(),
     ).start()
 
     const file = document.getElementById('file')!
@@ -52,7 +52,7 @@ describe('BlobViewerController', () => {
     new BlobViewerController(
       pageAt('/o/r/blob/main/README.md'),
       blobPage,
-      new FakeKindLookup(),
+      new FakeNotationLookup(),
     ).start()
     await new Promise((resolve) => setTimeout(resolve, 50))
 

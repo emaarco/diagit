@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { DiffPanel } from '../../src/panels/diff/DiffPanel'
-import { MARKER } from '../../src/panels/diff/markers'
+import { DiffPanel } from '../../src/views/diff-viewer/DiffPanel'
+import { MARKER } from '../../src/views/diff-viewer/markers'
 import { FakeDiffer } from '../fakes/FakeDiffer'
 
 const LOADING_LABEL = 'Loading diagram…'

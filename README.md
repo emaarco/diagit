@@ -1,10 +1,11 @@
-# bpmn-io-browser-plugin
+# Diagit
 
-[![CI](https://github.com/emaarco/bpmn-io-browser-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/emaarco/bpmn-io-browser-plugin/actions/workflows/ci.yml)
-[![license](https://img.shields.io/github/license/emaarco/bpmn-io-browser-plugin)](./LICENSE)
+[![CI](https://github.com/emaarco/diagit/actions/workflows/ci.yml/badge.svg)](https://github.com/emaarco/diagit/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/emaarco/diagit)](./LICENSE)
 
-> A browser extension (Chrome, Edge, Firefox) that renders **BPMN & DMN diagrams
-> inline** on GitLab and GitHub — and shows a **visual before/after diff** in
+> A browser extension (Chrome, Edge, Firefox) that renders **diagram models
+> inline** (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps and
+> Value Chains) on GitLab and GitHub — and shows a **visual before/after diff** in
 > merge and pull requests.
 
 ![On a GitHub pull request, the changed .bpmn file switches from the plain diagram to a before/after diff, then steps through the added, changed and moved elements](assets/demo.gif)
@@ -20,18 +21,19 @@ before/after view.
 
 It's built on the [bpmn.io](https://bpmn.io) toolkits
 ([bpmn-js](https://github.com/bpmn-io/bpmn-js),
-[dmn-js](https://github.com/bpmn-io/dmn-js)), and grew out of two internal
+[dmn-js](https://github.com/bpmn-io/dmn-js)) and the Miragon modeler renderers
+(Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains), and grew out of two internal
 Tampermonkey userscripts, now reworked into a tested, store-ready extension.
 
 ## Features
 
-- **Inline viewer** — open a `.bpmn` / `.dmn` file on GitLab or GitHub and the
+- **Inline viewer** — open a supported file on GitLab or GitHub and the
   diagram appears above the source (drag to pan; the +/− and fit buttons zoom).
 - **Merge / pull-request diff** — every changed `.bpmn` in an MR/PR (and on a
   GitHub single-commit page) gets a before/after view that marks added / removed
   / changed / moved elements (semantic diff, including `zeebe:*` properties) with
   prev/next navigation.
-- **Standalone viewer** — a built-in page to drop in any local `.bpmn` / `.dmn`
+- **Standalone viewer** — a built-in page to drop in any local diagram
   file; nothing leaves your machine, no site permissions needed.
 - **Self-hosted** — one click (toolbar icon or right-click) grants the viewer on
   your GitLab EE / GitHub Enterprise instance; manage domains in the options page.
@@ -41,6 +43,18 @@ Tampermonkey userscripts, now reworked into a tested, store-ready extension.
   serves its API from a separate origin (`api.github.com`) your login cookie can't
   reach. No token to create by hand — the app grants read-only access to just the
   repos you install it on.
+
+## Supported notations
+
+| Notation        | Files              | Inline viewer | PR / MR diff |
+| --------------- | ------------------ | ------------- | ------------ |
+| BPMN            | `.bpmn`            | yes           | yes          |
+| DMN             | `.dmn`             | yes           | no           |
+| Wardley Map     | `.owm`, `.wmap`    | yes           | no           |
+| Team Topologies | `.tt`, `.ttm.json` | yes           | no           |
+| Event Storming  | `.storm`           | yes           | no           |
+| Context Map     | `.cm`, `.cm.json`  | yes           | no           |
+| Value Chain     | `.vc`, `.vc.json`  | yes           | no           |
 
 ## Install
 
@@ -55,7 +69,7 @@ it as an unpacked extension:
 
 ```bash
 npm install
-npm run build -w @bpmn-io-browser-plugin/extension
+npm run build -w @diagit/extension
 ```
 
 Then load the output for your browser:

@@ -1,8 +1,8 @@
 {
-  "name": "bpmn-io-browser-plugin",
+  "name": "diagit",
   "version": "0.0.0",
   "private": true,
-  "description": "Browser extension that renders and diffs BPMN files inline on GitLab & GitHub — plus a standalone .bpmn viewer.",
+  "description": "Browser extension that renders and diffs diagram models (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains) inline on GitLab & GitHub — plus a standalone viewer.",
   "type": "module",
   "license": "MIT",
   "author": "Marco Schäck (https://github.com/emaarco)",
@@ -10,15 +10,15 @@
     "node": ">=22"
   },
   "workspaces": [
-    "packages/core",
+    "packages/bpmn-diff",
     "packages/extension"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
-    "dev": "npm run dev -w @bpmn-io-browser-plugin/extension",
-    "dev:example": "npm run dev:example -w @bpmn-io-browser-plugin/extension",
+    "dev": "npm run dev -w @diagit/extension",
+    "dev:example": "npm run dev:example -w @diagit/extension",
     "test": "npm run test --workspaces --if-present",
-    "test:e2e": "npm run test:e2e -w @bpmn-io-browser-plugin/extension --if-present",
+    "test:e2e": "npm run test:e2e -w @diagit/extension --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "eslint .",
     "lint:deps": "npm run lint:deps --workspaces --if-present",

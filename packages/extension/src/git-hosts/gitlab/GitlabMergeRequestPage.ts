@@ -1,4 +1,4 @@
-import type { ChangedFile, DiffLoaders, DiffPage } from '../../diff/DiffSource'
+import type { ChangedFile, DiffLoaders, DiffPage } from '../DiffSource'
 import type { GitlabDiffScanner } from './GitlabDiffScanner'
 import type { GitlabRestApi, MergeRequestData } from './GitlabRestApi'
 import type { GitlabRoutes, MergeRequestRef } from './GitlabRoutes'

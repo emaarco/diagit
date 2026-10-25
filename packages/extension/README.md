@@ -1,6 +1,6 @@
-# `@bpmn-io-browser-plugin/extension`
+# `@diagit/extension`
 
-> The browser extension (Chrome, Edge, Firefox) — renders **BPMN & DMN inline**
+> The browser extension (Chrome, Edge, Firefox) — renders **BPMN, DMN and the Miragon notations inline**
 > on GitLab & GitHub and shows a **before/after diff** in pull/merge requests.
 
 ## Why
@@ -10,7 +10,7 @@ A process change should be reviewed as a _diagram_, not as a wall of
 the review happens: on the file page and in the PR/MR — no downloads, no context
 switch to a modeler.
 
-It's the primary delivery path for the [`core`](../core) diff engine, wrapped in
+It's the primary delivery path for the [`bpmn-diff`](../bpmn-diff) diff engine, wrapped in
 [bpmn-js / dmn-js](https://bpmn.io) for rendering and built with
 [WXT](https://wxt.dev) so one codebase ships to Chromium **and** Firefox.
 
@@ -35,8 +35,8 @@ Building from source is covered in the repo [README](../../README.md#install).
   (self-hosted GitLab/GitHub).
 - **`entrypoints/options` + `viewer`** — the options page and a standalone
   drop-in viewer (nothing leaves your machine).
-- **`src/`** — git hosts (`git-hosts/`), diagram kinds (`kinds/`), page
-  controllers (`page/`) and the rendered panels (`panels/`).
+- **`src/`** — views (`views/`), notations (`notations/`), git hosts (`git-hosts/`), the
+  background worker (`background/`) and the browser runtime (`platform/`).
 
 ## Develop
 
@@ -50,7 +50,7 @@ npm run build              # production build for both browsers
 `npm run dev:example` opens three tabs against this repo so the git-host views
 can be checked end-to-end without foreign repos: the inline viewer on
 `e2e/fixtures/sample.bpmn` and `sample.dmn`, and the before/after diff on a
-permanently-closed demo PR ([#12](https://github.com/emaarco/bpmn-io-browser-plugin/pull/12)).
+permanently-closed demo PR ([#12](https://github.com/emaarco/diagit/pull/12)).
 The tab list lives in [`wxt.config.ts`](./wxt.config.ts) (`EXAMPLE_URLS`).
 
 Loading the built extension unpacked and the full monorepo layout are covered in

@@ -1,5 +1,5 @@
 import { browser, $, expect } from '@wdio/globals'
-import { DIFF_PANEL_TAG } from '../../src/injectedElements'
+import { DIFF_PANEL_TAG } from '../../src/platform/injectedElements'
 
 /**
  * DRIFT CANARY (run with `WDIO_LIVE=1`) — drives the REAL github.com PR "Files
@@ -10,7 +10,7 @@ import { DIFF_PANEL_TAG } from '../../src/injectedElements'
  * Target: the repo's frozen demo PR #12 (a permanently-closed PR that changes a
  * `.bpmn` file — "do not merge/delete", see wxt.config.ts).
  */
-const PR_URL = 'https://github.com/emaarco/bpmn-io-browser-plugin/pull/12/files'
+const PR_URL = 'https://github.com/emaarco/diagit/pull/12/files'
 
 describe('LIVE: GitHub PR diff on real github.com', () => {
   it('injects a diff panel with a rendered diagram on the real PR', async () => {

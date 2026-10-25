@@ -1,6 +1,6 @@
 import type { AuthPolicy } from '../git-hosts/GitHost'
-import type { FetchTextResponse } from '../messaging/messages'
-import { errorMessage } from '../utils/errorMessage'
+import type { FetchTextResponse } from '../platform/messaging/messages'
+import { errorMessage } from '../platform/utils/errorMessage'
 
 type Fetch = typeof fetch
 

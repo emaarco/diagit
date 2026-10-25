@@ -67,7 +67,7 @@ jobs:
         run: npm ci
 
       - name: Build & zip (Chrome + Firefox)
-        run: npm run zip -w @bpmn-io-browser-plugin/extension
+        run: npm run zip -w @diagit/extension
 
       - name: Upload store bundles to the release
         env:
@@ -101,12 +101,12 @@ jobs:
         run: npm ci
 
       - name: Build & zip (Chrome + Firefox)
-        run: npm run zip -w @bpmn-io-browser-plugin/extension
+        run: npm run zip -w @diagit/extension
 
       - name: Validate bundles
         run: |
           ls -la packages/extension/.output/*.zip
-          npm run lint:webext -w @bpmn-io-browser-plugin/extension
+          npm run lint:webext -w @diagit/extension
 
   # Real upload to the stores, reviewer-gated via the `store-publishing`
   # environment. Runs on its own after a release was packaged, or manually

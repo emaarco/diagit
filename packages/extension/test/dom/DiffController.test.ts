@@ -1,10 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { DiffDataError, type DiffSource } from '../../src/diff/DiffSource'
-import { DIFF_ERROR_TAG, DIFF_PANEL_TAG } from '../../src/injectedElements'
-import { DiffController } from '../../src/page/DiffController'
-import { HostPage } from '../../src/page/HostPage'
+import { DiffDataError, type DiffSource } from '../../src/git-hosts/DiffSource'
+import { DIFF_ERROR_TAG, DIFF_PANEL_TAG } from '../../src/platform/injectedElements'
+import { DiffController } from '../../src/views/diff-viewer/DiffController'
+import { HostPage } from '../../src/platform/page/HostPage'
 import { FakeContentScriptContext } from '../fakes/FakeContentScriptContext'
-import { FakeKindLookup } from '../fakes/FakeKindLookup'
+import { FakeNotationLookup } from '../fakes/FakeNotationLookup'
 
 const RERUN_DEBOUNCE_MS = 300
 
@@ -47,7 +47,7 @@ function sourceShowing(
 }
 
 function start(source: DiffSource): void {
-  new DiffController(new HostPage(context.ctx), source, new FakeKindLookup()).start()
+  new DiffController(new HostPage(context.ctx), source, new FakeNotationLookup()).start()
 }
 
 const untilRerunStarted = () =>
@@ -86,7 +86,7 @@ describe('DiffController', () => {
     )
   })
 
-  it('leaves files of a kind without diff support alone', async () => {
+  it('leaves files of a notation without diff support alone', async () => {
     const fileRoot = renderFileBox()
     start(sourceShowing(fileRoot, Promise.resolve(), 'rules/decide.dmn'))
 

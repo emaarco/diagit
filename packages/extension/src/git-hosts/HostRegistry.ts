@@ -1,4 +1,4 @@
-import { originToPattern } from '../utils/origin'
+import { originToPattern } from '../platform/utils/origin'
 import type { AuthPolicy, GitHost, PageUrl } from './GitHost'
 
 export class HostRegistry {

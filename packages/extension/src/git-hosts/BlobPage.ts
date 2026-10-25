@@ -1,5 +1,5 @@
-import type { HttpClient } from '../messaging/HttpClient'
-import { kindDetector, type KindDetector } from '../kinds/KindDetector'
+import type { HttpClient } from '../platform/messaging/HttpClient'
+import { notationDetector, type NotationDetector } from '../notations/NotationDetector'
 
 export interface BlobPageConfig {
   blobSegment: string
@@ -14,7 +14,7 @@ export class BlobPage {
   constructor(
     private readonly config: BlobPageConfig,
     private readonly http: HttpClient,
-    private readonly kinds: KindDetector = kindDetector,
+    private readonly notations: NotationDetector = notationDetector,
   ) {}
 
   isBlob(location: Pick<Location, 'pathname'>): boolean {
@@ -22,7 +22,7 @@ export class BlobPage {
   }
 
   showsDiagram(location: Pick<Location, 'pathname'>): boolean {
-    return this.isBlob(location) && this.kinds.detect(location.pathname) !== null
+    return this.isBlob(location) && this.notations.detect(location.pathname) !== null
   }
 
   rawUrl(location: Location): string {

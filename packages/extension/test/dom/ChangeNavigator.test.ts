@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { ChangeNavigator } from '../../src/panels/diff/ChangeNavigator'
-import { MARKER } from '../../src/panels/diff/markers'
+import { ChangeNavigator } from '../../src/views/diff-viewer/ChangeNavigator'
+import { MARKER } from '../../src/views/diff-viewer/markers'
 import { FakeDiffableViewer } from '../fakes/FakeDiffableViewer'
 
 describe('ChangeNavigator', () => {

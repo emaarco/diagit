@@ -1,4 +1,4 @@
-import type { ChangedFile, DiffLoaders, DiffPage } from '../../diff/DiffSource'
+import type { ChangedFile, DiffLoaders, DiffPage } from '../DiffSource'
 import type { GithubApiAuth } from './GithubApiAuth'
 import type { GithubDiffScanner } from './GithubDiffScanner'
 import type { GithubDiffData, GithubRestApi } from './GithubRestApi'

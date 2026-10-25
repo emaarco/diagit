@@ -6,7 +6,7 @@ import { defineConfig } from 'wxt'
 //   - a permanently-closed demo PR (#12) exercises the before/after diff view
 // The fixtures live on `main` at packages/extension/e2e/fixtures and are the
 // same files the e2e suite renders.
-const REPO = 'https://github.com/emaarco/bpmn-io-browser-plugin'
+const REPO = 'https://github.com/emaarco/diagit'
 const FIXTURES = `${REPO}/blob/main/packages/extension/e2e/fixtures`
 const EXAMPLE_URLS = [
   `${FIXTURES}/sample.bpmn`, // inline viewer — BPMN
@@ -46,9 +46,9 @@ export default defineConfig({
     startUrls: openExample ? EXAMPLE_URLS : undefined,
   },
   manifest: {
-    name: 'bpmn-io-browser-plugin',
+    name: 'Diagit',
     description:
-      'Render BPMN & DMN diagrams inline on GitLab & GitHub, with a before/after diff in merge/pull requests and a standalone viewer.',
+      'Render BPMN, DMN, Wardley Maps, Team Topologies, Event Storming & more inline on GitHub & GitLab, with before/after diffs.',
     permissions: ['scripting', 'storage', 'contextMenus', 'activeTab'],
     action: {
       default_icon: {

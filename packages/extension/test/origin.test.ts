@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { normalizeOrigin, originToPattern, patternToOrigin } from '../src/utils/origin'
+import { normalizeOrigin, originToPattern, patternToOrigin } from '../src/platform/utils/origin'
 
 describe('normalizeOrigin', () => {
   it('defaults to https and strips path/query', () => {

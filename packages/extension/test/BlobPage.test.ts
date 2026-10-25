@@ -8,7 +8,7 @@ function loc(pathname: string, origin = 'https://gitlab.com', search = ''): Loca
 describe('GitLab blob page', () => {
   const blobPage = gitlabHost.blobPage
 
-  it('recognises blob pages by the blob segment and diagrams by their kind', () => {
+  it('recognises blob pages by the blob segment and diagrams by their notation', () => {
     expect(blobPage.isBlob(loc('/g/p/-/blob/main/order.bpmn'))).toBe(true)
     expect(blobPage.isBlob(loc('/g/p/-/blob/main/readme.md'))).toBe(true)
     expect(blobPage.showsDiagram(loc('/g/p/-/blob/main/readme.md'))).toBe(false)

@@ -2,9 +2,9 @@ import './options.css'
 
 import { githubTokens, hostRegistry } from '../../src/git-hosts/hosts'
 import { GithubDeviceFlow } from '../../src/git-hosts/github/GithubDeviceFlow'
-import { HostAccess } from '../../src/host-access/HostAccess'
-import { GithubAccessSection } from '../../src/options/GithubAccessSection'
-import { SelfHostedHostsSection } from '../../src/options/SelfHostedHostsSection'
+import { HostAccess } from '../../src/git-hosts/self-hosted/HostAccess'
+import { GithubAccessSection } from '../../src/views/options/GithubAccessSection'
+import { SelfHostedHostsSection } from '../../src/views/options/SelfHostedHostsSection'
 
 const app = document.querySelector<HTMLElement>('#app')!
 
