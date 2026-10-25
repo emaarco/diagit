@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { GithubApiAuth } from '../src/git-hosts/github/GithubApiAuth'
 import { GithubRoutes } from '../src/git-hosts/github/GithubRoutes'
 import { GithubTokenStore } from '../src/git-hosts/github/GithubTokenStore'
-import { FetchError } from '../src/messaging/HttpClient'
-import { SettingsStore } from '../src/settings/SettingsStore'
+import { FetchError } from '../src/platform/messaging/HttpClient'
+import { SettingsStore } from '../src/platform/settings/SettingsStore'
 import { MemoryStorageArea } from './fakes/MemoryStorageArea'
 
 async function authWithToken(token: string): Promise<GithubApiAuth> {

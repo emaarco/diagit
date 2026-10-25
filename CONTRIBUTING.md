@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve the bpmn-io-browser-plugin extension!
+Thanks for helping improve the Diagit extension!
 
 ## Getting started
 
@@ -13,7 +13,7 @@ This opens a browser with the extension pre-loaded and hot-reloads on every
 change. For Firefox:
 
 ```bash
-npm run dev -w @bpmn-io-browser-plugin/extension -- -b firefox
+npm run dev -w @diagit/extension -- -b firefox
 ```
 
 ## Repository layout
@@ -22,10 +22,10 @@ This is an npm-workspaces monorepo:
 
 | Package              | What it is                                                                  |
 | -------------------- | --------------------------------------------------------------------------- |
-| `packages/core`      | Framework-free BPMN parsing (bpmn-moddle) + the semantic diff. No DOM.      |
+| `packages/bpmn-diff` | Framework-free BPMN parsing (bpmn-moddle) + the semantic diff. No DOM.      |
 | `packages/extension` | The [WXT](https://wxt.dev) extension: content scripts, options, background. |
 
-The diff is deliberately isolated in `core` so it is unit-tested in plain Node,
+The diff is deliberately isolated in `bpmn-diff` so it is unit-tested in plain Node,
 independently of the extension that renders it.
 
 ## Development
@@ -39,8 +39,8 @@ npm run lint:deps      # architecture guardrail (dependency-cruiser)
 npm run knip           # unused files, exports & dependencies (knip)
 
 # production build (both browsers) + zips
-npm run build -w @bpmn-io-browser-plugin/extension
-npm run zip   -w @bpmn-io-browser-plugin/extension
+npm run build -w @diagit/extension
+npm run zip   -w @diagit/extension
 ```
 
 ## End-to-end tests
@@ -53,17 +53,17 @@ local server — no live github.com — and asserts the diagram actually renders
 
 ```bash
 # 1. build the extension in E2E mode (its view router also matches localhost)
-npm run e2e:build -w @bpmn-io-browser-plugin/extension
+npm run e2e:build -w @diagit/extension
 # 2. run the suite (defaults to every browser that's installed)
-npm run test:e2e  -w @bpmn-io-browser-plugin/extension
+npm run test:e2e  -w @diagit/extension
 ```
 
 Pick a subset of browsers, or **see it run**:
 
 ```bash
-WDIO_BROWSERS=chrome npm run test:e2e -w @bpmn-io-browser-plugin/extension  # just one browser
-WDIO_HEADED=1        npm run test:e2e -w @bpmn-io-browser-plugin/extension  # visible browser window
-WDIO_SCREENSHOTS=1   npm run test:e2e -w @bpmn-io-browser-plugin/extension  # PNG per test
+WDIO_BROWSERS=chrome npm run test:e2e -w @diagit/extension  # just one browser
+WDIO_HEADED=1        npm run test:e2e -w @diagit/extension  # visible browser window
+WDIO_SCREENSHOTS=1   npm run test:e2e -w @diagit/extension  # PNG per test
 ```
 
 `WDIO_HEADED=1` opens a real window (the specs run fast — drop a `browser.debug()`
@@ -86,8 +86,8 @@ still injects. Every GitHub selector lives in one file per host
 one-file change.
 
 ```bash
-npm run build       -w @bpmn-io-browser-plugin/extension   # normal build (real github.com)
-npm run test:e2e:live -w @bpmn-io-browser-plugin/extension # WDIO_LIVE against real github.com
+npm run build       -w @diagit/extension   # normal build (real github.com)
+npm run test:e2e:live -w @diagit/extension # WDIO_LIVE against real github.com
 ```
 
 It runs **weekly** (`.github/workflows/canary.yml`), **not** on PRs — real GitHub
@@ -98,14 +98,14 @@ A GitLab canary is a tracked follow-up.
 ## Loading the extension unpacked
 
 You don't need the Chrome Web Store / AMO to run this — load the built extension
-directly. Build it once (`npm run build -w @bpmn-io-browser-plugin/extension`), which
+directly. Build it once (`npm run build -w @diagit/extension`), which
 produces two artifacts:
 
 - `packages/extension/.output/chrome-mv3` — for **all Chromium browsers**
 - `packages/extension/.output/firefox-mv3` — for **Firefox and its forks**
 
 > For active development, prefer `npm run dev` (Chromium) or
-> `npm run dev -w @bpmn-io-browser-plugin/extension -- -b firefox` — it hot-reloads
+> `npm run dev -w @diagit/extension -- -b firefox` — it hot-reloads
 > instead of requiring a rebuild + reload for each change.
 
 ### Chromium browsers (Chrome, Edge, Vivaldi, Brave, Opera, Arc, …)
@@ -135,13 +135,13 @@ on the extension card to pick up changes.
   submit the zip to [AMO](https://addons.mozilla.org) for signing, or use
   **Firefox Developer Edition / Nightly**, set `xpinstall.signatures.required` to
   `false` in `about:config`, then install the packaged zip from
-  `npm run zip -w @bpmn-io-browser-plugin/extension` (`.output/*.zip`).
+  `npm run zip -w @diagit/extension` (`.output/*.zip`).
 
 ### After installing
 
 `gitlab.com` and `github.com` work immediately. For a **self-hosted** GitLab EE /
 GitHub Enterprise instance, open a `.bpmn` file (or a merge request) there and
-click the extension's toolbar icon — or right-click the page → _Enable bpmn-io-browser-plugin on this
+click the extension's toolbar icon — or right-click the page → _Enable Diagit on this
 domain_ — to grant access to just that site. You can also
 manage domains in the options page.
 
@@ -163,7 +163,7 @@ npm run format     # prettier
 - **Commits & PR titles** follow [Conventional Commits](https://www.conventionalcommits.org/)
   (`feat:`, `fix:`, `refactor:`, `chore:`, `docs:`, …). The PR title is checked in
   CI and drives the automated release notes (release-please).
-- **Architecture**: keep `packages/core` free of DOM and bpmn-js — it's the pure,
+- **Architecture**: keep `packages/bpmn-diff` free of DOM and bpmn-js — it's the pure,
   testable diff core. The layering is enforced by dependency-cruiser in both
   packages (`npm run lint:deps`).
 - **Classes first**: behaviour lives in classes; pure helpers go to a `utils/`
@@ -172,18 +172,26 @@ npm run format     # prettier
 
 ## Where things live
 
-- `packages/core/src/domain` — the diff algorithm (pure).
-- `packages/core/src/adapter` — BPMN XML → parsed model (bpmn-moddle).
+- `packages/bpmn-diff/src/domain` — the diff algorithm (pure).
+- `packages/bpmn-diff/src/adapter` — BPMN XML → parsed model (bpmn-moddle).
 - `packages/extension/entrypoints` — one-line WXT entrypoints that wire the classes below.
-- `packages/extension/src/git-hosts` — one folder per git host behind the `GitHost`
-  interface (routes, REST API, DOM scanner, blob page, diff pages), plus the `HostRegistry`.
-- `packages/extension/src/kinds` — one folder per diagram kind behind the `DiagramKind`
-  interface (viewer, CSS, optional differ); `kindCatalog.ts` is the light, import-safe list.
-- `packages/extension/src/page` — content-script controllers (blob viewer, diff, view router).
-- `packages/extension/src/panels` — the rendered UIs (model panel, diff panel).
-- `packages/extension/src/diff` — the `DiffSource` seam and its caching.
-- `packages/extension/src/host-access`, `src/background`, `src/options` — self-hosted
-  instances, the background worker and the options page.
+- `packages/extension/src/views` — what the user sees, one folder per view: `blob-viewer`
+  (diagram above a file), `diff-viewer` (before/after diff in PRs/MRs), `standalone-viewer`,
+  `options`, plus the `view-router` that picks the view for a page. Views never import each other.
+- `packages/extension/src/notations` — one folder per notation behind the `Notation`
+  interface (descriptor, viewer, CSS, optional differ); each folder's `descriptor.ts` and
+  `notationCatalog.ts` are light and import-safe, everything else loads a renderer. Only views
+  pick a registry (`allNotations`, `diffableNotations`), so each bundle carries just the
+  renderers it needs.
+- `packages/extension/src/git-hosts` — where files come from: one folder per git host behind the
+  `GitHost` interface (routes, REST API, DOM scanner, blob page, diff pages), the `DiffSource`
+  seam, the `HostRegistry` and `self-hosted/` instance access.
+- `packages/extension/src/background` — the background worker (fetch proxy, script injection).
+- `packages/extension/src/platform` — the browser runtime everything builds on: messaging,
+  settings, the content-script `HostPage`, shared UI and `utils/`. It imports nothing outside itself.
+
+Imports point down: `views` / `background` → `notations` / `git-hosts` → `platform`. The rules live in
+`packages/extension/.dependency-cruiser.cjs`.
 
 ### Adding a git host
 
@@ -192,8 +200,18 @@ Create `src/git-hosts/<host>/` with a class implementing `GitHost`, register it 
 (`<host>-blob.content.ts`, …). Add its API origin to `host_permissions` in
 `wxt.config.ts` when it is cross-origin.
 
-### Adding a diagram kind
+### Adding a notation
 
-Add a descriptor to `src/kinds/kindCatalog.ts` and a class implementing
-`DiagramKind` in `src/kinds/<kind>/`, then register it in `allKinds.ts` (and in
-`diffableKinds.ts` once it has a differ). The registry tests check the three stay in sync.
+Every notation lives in its own folder `src/notations/<notation>/` and never imports another notation
+(`notations-stay-isolated` in `.dependency-cruiser.cjs`):
+
+1. `descriptor.ts` with id, label and file extensions, listed in `notationCatalog.ts`.
+   It must stay free of viewer imports, because git hosts load it to detect files.
+2. A class implementing `Notation` (viewer, CSS), registered in `allNotations.ts`. A
+   diagram-js based renderer extends `DiagramJsNotation` and only creates the diagram and
+   imports the file (see `wardley-map/WardleyMapNotation.ts`).
+3. For diff support: a `packages/<notation>-diff` workspace with the framework-free diff
+   (like `packages/bpmn-diff`), a `DiagramDiffer` in the notation folder, `diffable: true`
+   and an entry in `diffableNotations.ts`.
+
+The registry tests check that the lists stay in sync.

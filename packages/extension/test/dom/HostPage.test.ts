@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HostPage } from '../../src/page/HostPage'
+import { HostPage } from '../../src/platform/page/HostPage'
 import { FakeContentScriptContext } from '../fakes/FakeContentScriptContext'
 
 const context = new FakeContentScriptContext()

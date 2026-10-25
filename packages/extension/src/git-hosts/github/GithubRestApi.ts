@@ -1,5 +1,5 @@
-import type { HttpClient } from '../../messaging/HttpClient'
-import { fetchAllPages } from '../../utils/fetchAllPages'
+import type { HttpClient } from '../../platform/messaging/HttpClient'
+import { fetchAllPages } from '../../platform/utils/fetchAllPages'
 import type { CommitRef, GithubRoutes, PullRequestRef } from './GithubRoutes'
 
 export interface GithubDiffFile {

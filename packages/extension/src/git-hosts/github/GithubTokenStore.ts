@@ -1,4 +1,4 @@
-import type { SettingsStore } from '../../settings/SettingsStore'
+import type { SettingsStore } from '../../platform/settings/SettingsStore'
 
 const TOKEN_KEY = 'githubApiToken'
 const LOGIN_KEY = 'githubLogin'

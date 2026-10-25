@@ -20,7 +20,7 @@ export class ViewScriptInjector {
       })
       return true
     } catch (err) {
-      console.error(`[bpmn-io-browser-plugin] could not load ${script}`, err)
+      console.error(`[diagit] could not load ${script}`, err)
       return false
     }
   }

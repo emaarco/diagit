@@ -10,7 +10,7 @@ describe('GitHub blob viewer (content script)', () => {
     await browser.url('/octo/flows/blob/main/order.bpmn')
 
     // The viewer mounts under our custom host element as a shadow-root UI.
-    const host = $('bpmn-io-browser-plugin')
+    const host = $('diagit-viewer')
     await host.waitForExist({ timeout: 20_000 })
 
     // bpmn-js renders diagram-js shape elements once the XML has loaded.
@@ -19,5 +19,14 @@ describe('GitHub blob viewer (content script)', () => {
 
     // Additive injection: the host's own code container must still be present.
     await expect($('[data-testid="code-lines-container"]')).toBeExisting()
+  })
+
+  it('renders a Wardley Map with its Miragon renderer inside the shadow root', async () => {
+    await browser.url('/octo/strategy/blob/main/tea.owm')
+
+    const host = $('diagit-viewer')
+    await host.waitForExist({ timeout: 20_000 })
+
+    await expect(host.shadow$('.djs-element')).toBeExisting()
   })
 })

@@ -1,4 +1,4 @@
-import type { StorageArea } from '../../src/settings/SettingsStore'
+import type { StorageArea } from '../../src/platform/settings/SettingsStore'
 
 export class MemoryStorageArea implements StorageArea {
   readonly items: Record<string, unknown> = {}

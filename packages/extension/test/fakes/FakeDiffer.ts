@@ -1,5 +1,4 @@
-import type { DiagramDiff } from '@bpmn-io-browser-plugin/core'
-import type { DiagramDiffer } from '../../src/kinds/DiagramKind'
+import type { DiagramDiff, DiagramDiffer } from '../../src/notations/Notation'
 import { FakeDiffableViewer } from './FakeDiffableViewer'
 
 export class FakeDiffer implements DiagramDiffer {

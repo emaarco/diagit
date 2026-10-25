@@ -1,5 +1,5 @@
-import { BackgroundClient } from '../messaging/BackgroundClient'
-import { SettingsStore } from '../settings/SettingsStore'
+import { BackgroundClient } from '../platform/messaging/BackgroundClient'
+import { SettingsStore } from '../platform/settings/SettingsStore'
 import { GithubHost } from './github/GithubHost'
 import { GithubTokenStore } from './github/GithubTokenStore'
 import { GitlabHost } from './gitlab/GitlabHost'

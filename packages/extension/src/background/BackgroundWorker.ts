@@ -2,13 +2,13 @@ import { browser } from 'wxt/browser'
 import addPermissionToggle from 'webext-permission-toggle'
 import type { HostRegistry } from '../git-hosts/HostRegistry'
 import { hostRegistry } from '../git-hosts/hosts'
-import { HostAccess } from '../host-access/HostAccess'
-import type { BackgroundRequest } from '../messaging/messages'
-import { originToPattern } from '../utils/origin'
+import { HostAccess } from '../git-hosts/self-hosted/HostAccess'
+import type { BackgroundRequest } from '../platform/messaging/messages'
+import { originToPattern } from '../platform/utils/origin'
 import { FetchProxy } from './FetchProxy'
 import { ViewScriptInjector } from './ViewScriptInjector'
 
-const ENABLE_ON_DOMAIN_TITLE = 'Enable bpmn-io-browser-plugin on this domain'
+const ENABLE_ON_DOMAIN_TITLE = 'Enable Diagit on this domain'
 const KEEP_CHANNEL_OPEN_FOR_ASYNC_RESPONSE = true
 
 interface Tab {
@@ -36,7 +36,7 @@ export class BackgroundWorker {
   start(): void {
     this.access
       .restoreOnStartup()
-      .catch((err) => console.error('[bpmn-io-browser-plugin] host registration failed', err))
+      .catch((err) => console.error('[diagit] host registration failed', err))
     addPermissionToggle({ title: ENABLE_ON_DOMAIN_TITLE })
     browser.action?.onClicked.addListener((tab) => void this.onToolbarClick(tab))
     browser.permissions.onAdded.addListener((perms) => void this.access.grant(perms.origins ?? []))

@@ -1,4 +1,4 @@
-import { FetchError, type HttpClient } from '../../src/messaging/HttpClient'
+import { FetchError, type HttpClient } from '../../src/platform/messaging/HttpClient'
 
 type Response = unknown | Error
 

@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DiffDataError } from '../../src/diff/DiffSource'
+import { DiffDataError } from '../../src/git-hosts/DiffSource'
 import { GithubHost } from '../../src/git-hosts/github/GithubHost'
 import { GithubTokenStore } from '../../src/git-hosts/github/GithubTokenStore'
-import { FetchError } from '../../src/messaging/HttpClient'
-import { SettingsStore } from '../../src/settings/SettingsStore'
+import { FetchError } from '../../src/platform/messaging/HttpClient'
+import { SettingsStore } from '../../src/platform/settings/SettingsStore'
 import { FakeHttpClient } from '../fakes/FakeHttpClient'
 import { MemoryStorageArea } from '../fakes/MemoryStorageArea'
 
@@ -82,7 +82,7 @@ describe('GitHub pull-request diff', () => {
     expect(blocks.map((block) => block.path)).toEqual(['flows/order.bpmn'])
   })
 
-  it('skips kinds without diff support and fetches nothing for them', async () => {
+  it('skips notations without diff support and fetches nothing for them', async () => {
     const http = new FakeHttpClient().respondWith(pullRequestMetadata)
     const doc = withFileBoxes(`
       <div class="file" data-tagsearch-path="rules/decide.dmn">

@@ -31,4 +31,16 @@ describe('standalone viewer page', () => {
   it('renders a .dmn file with dmn-js', async () => {
     await expectRenders('sample.dmn')
   })
+
+  for (const fixture of [
+    'sample.owm',
+    'sample.tt',
+    'sample.storm',
+    'sample.cm',
+    'sample.vc.json',
+  ]) {
+    it(`renders a ${fixture} file with its Miragon renderer`, async () => {
+      await expectRenders(fixture)
+    })
+  }
 })

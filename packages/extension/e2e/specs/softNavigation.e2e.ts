@@ -1,5 +1,5 @@
 import { browser, $, expect } from '@wdio/globals'
-import { DIFF_PANEL_TAG, HOST_TAG } from '../../src/injectedElements'
+import { DIFF_PANEL_TAG, HOST_TAG } from '../../src/platform/injectedElements'
 
 const REPO_HOME = '/octo/flows'
 const BPMN_FILE = '/octo/flows/blob/main/order.bpmn'

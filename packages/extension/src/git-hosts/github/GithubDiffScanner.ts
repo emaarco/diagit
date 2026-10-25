@@ -1,13 +1,13 @@
-import type { ChangedFile } from '../../diff/DiffSource'
-import { kindDetector, type KindDetector } from '../../kinds/KindDetector'
-import { isRendered } from '../../utils/isRendered'
+import type { ChangedFile } from '../DiffSource'
+import { notationDetector, type NotationDetector } from '../../notations/NotationDetector'
+import { isRendered } from '../../platform/utils/isRendered'
 import { githubSelectors } from './githubSelectors'
 
 const BIDI_MARKS = /[‎‏‪-‮⁦-⁩]/gu
 const RENAME_ARROW = '→'
 
 export class GithubDiffScanner {
-  constructor(private readonly kinds: KindDetector = kindDetector) {}
+  constructor(private readonly notations: NotationDetector = notationDetector) {}
 
   scan(doc: Document): ChangedFile[] {
     const files: ChangedFile[] = []
@@ -16,7 +16,7 @@ export class GithubDiffScanner {
       if (seen.has(root)) continue
       seen.add(root)
       const path = this.filePathOf(root)
-      if (!path || !this.kinds.isDiffable(path)) continue
+      if (!path || !this.notations.isDiffable(path)) continue
       const code = this.codeOf(root)
       if (!code) continue
       files.push({

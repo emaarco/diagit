@@ -35,10 +35,10 @@ jobs:
 
       # Normal build → real github.com host matches (no WXT_E2E localhost matches).
       - name: Build extension
-        run: npm run build -w @bpmn-io-browser-plugin/extension
+        run: npm run build -w @diagit/extension
 
       - name: Live canary (Chrome, real github.com)
-        run: npm run test:e2e:live -w @bpmn-io-browser-plugin/extension
+        run: npm run test:e2e:live -w @diagit/extension
         env:
           WDIO_BROWSERS: chrome
           WDIO_SCREENSHOTS: '1'

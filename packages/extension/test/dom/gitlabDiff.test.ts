@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { DiffDataError } from '../../src/diff/DiffSource'
+import { DiffDataError } from '../../src/git-hosts/DiffSource'
 import { GitlabHost } from '../../src/git-hosts/gitlab/GitlabHost'
-import { DIFF_PANEL_TAG } from '../../src/injectedElements'
-import { FetchError } from '../../src/messaging/HttpClient'
+import { DIFF_PANEL_TAG } from '../../src/platform/injectedElements'
+import { FetchError } from '../../src/platform/messaging/HttpClient'
 import { FakeHttpClient } from '../fakes/FakeHttpClient'
 
 const location = {

@@ -1,4 +1,4 @@
-import type { DiffableViewer } from '../../src/kinds/DiagramKind'
+import type { DiffableViewer } from '../../src/notations/Notation'
 
 export class FakeDiffableViewer implements DiffableViewer {
   readonly markers: Array<{ id: string; marker: string }> = []

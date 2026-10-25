@@ -1,4 +1,4 @@
-import { FetchError } from '../../messaging/HttpClient'
+import { FetchError } from '../../platform/messaging/HttpClient'
 import type { AuthPolicy } from '../GitHost'
 import type { GithubRoutes } from './GithubRoutes'
 import type { GithubTokenStore } from './GithubTokenStore'
