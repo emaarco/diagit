@@ -48,6 +48,13 @@ describe('ModelComparator', () => {
     expect(result.removed).toEqual([])
   })
 
+  it('detects a camunda 7 async continuation change', async () => {
+    const c7 = readFixture('c7-async.bpmn')
+    const synchronous = c7.replace(' camunda:asyncBefore="true"', '')
+    const result = await diff(c7, synchronous)
+    expect(result.changed).toEqual(['Task_1'])
+  })
+
   it('detects a pure layout move without a semantic change', async () => {
     const moved = base.replace('x="250" y="78"', 'x="250" y="240"')
     const result = await diff(base, moved)

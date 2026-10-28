@@ -1,10 +1,11 @@
 import { BpmnModdle } from 'bpmn-moddle'
+import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json' with { type: 'json' }
 import type { ModdleElement } from 'bpmn-moddle'
 import type { Bounds, DiffElement, ParsedModel } from '../domain/model'
 
 export class BpmnParser {
   async parse(xml: string): Promise<ParsedModel> {
-    const { rootElement } = await new BpmnModdle().fromXML(xml)
+    const { rootElement } = await new BpmnModdle({ camunda: camundaModdle }).fromXML(xml)
     return this.buildModel(rootElement)
   }
 

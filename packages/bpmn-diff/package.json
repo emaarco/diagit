@@ -21,7 +21,8 @@
     "lint:deps": "depcruise src --config .dependency-cruiser.cjs --output-type err"
   },
   "dependencies": {
-    "bpmn-moddle": "10.3.1"
+    "bpmn-moddle": "10.3.1",
+    "camunda-bpmn-moddle": "8.0.2"
   },
   "devDependencies": {
     "@types/node": "26.6.5",
