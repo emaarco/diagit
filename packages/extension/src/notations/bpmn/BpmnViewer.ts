@@ -1,8 +1,10 @@
 import NavigatedViewer from 'bpmn-js/lib/NavigatedViewer'
+import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json' with { type: 'json' }
 import { resolveDiagramColors } from '../../platform/utils/hostTheme'
 import { fitWithPadding } from '../../platform/utils/fitWithPadding'
 import { toggleZoomScroll } from '../../platform/utils/zoomScroll'
 import type { DiffableViewer } from '../Notation'
+import { TransactionBoundaryOverlays } from './transaction-boundaries/TransactionBoundaryOverlays'
 
 export class BpmnViewer implements DiffableViewer {
   static async create(canvas: HTMLElement, xml: string): Promise<BpmnViewer> {
@@ -11,6 +13,7 @@ export class BpmnViewer implements DiffableViewer {
       container: canvas,
       bpmnRenderer: { defaultStrokeColor: stroke, defaultFillColor: fill },
       zoomScroll: { enabled: false },
+      moddleExtensions: { camunda: camundaModdle },
     })
     try {
       await viewer.importXML(xml)
@@ -18,6 +21,7 @@ export class BpmnViewer implements DiffableViewer {
       viewer.destroy()
       throw err
     }
+    new TransactionBoundaryOverlays(viewer).show()
     const bpmnViewer = new BpmnViewer(viewer)
     bpmnViewer.fitViewportUnlessContainerIsUnmeasured()
     return bpmnViewer

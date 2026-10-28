@@ -11,6 +11,7 @@ declare module 'bpmn-js/lib/NavigatedViewer' {
     constructor(options?: Record<string, unknown>)
     importXML(xml: string): Promise<ImportResult>
     get<T = any>(service: string): T
+    getDefinitions(): any
     destroy(): void
     on(event: string, callback: (event: any) => void): void
   }
