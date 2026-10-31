@@ -41,6 +41,9 @@ npm run knip           # unused files, exports & dependencies (knip)
 # production build (both browsers) + zips
 npm run build -w @diagit/extension
 npm run zip   -w @diagit/extension
+
+# artifact size budget (size-limit), needs a production build
+npm run size
 ```
 
 ## End-to-end tests

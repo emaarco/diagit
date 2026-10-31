@@ -47,6 +47,9 @@ jobs:
       - name: Build extension (Chrome + Firefox)
         run: npm run build
 
+      - name: Artifact size budget (size-limit)
+        run: npm run size
+
       - name: Validate Firefox bundle (web-ext lint)
         run: npm run lint:webext -w @diagit/extension
 

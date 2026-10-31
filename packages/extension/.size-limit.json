@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Chrome artifact",
+    "path": ".output/chrome-mv3/**",
+    "limit": "8.8 MB",
+    "gzip": false,
+    "brotli": false
+  },
+  {
+    "name": "Firefox artifact",
+    "path": ".output/firefox-mv3/**",
+    "limit": "8.8 MB",
+    "gzip": false,
+    "brotli": false
+  },
+  {
+    "name": "Blob content scripts",
+    "path": ".output/chrome-mv3/content-scripts/*-blob.js",
+    "limit": "4.4 MB",
+    "gzip": false,
+    "brotli": false
+  },
+  {
+    "name": "Diff content scripts",
+    "path": [
+      ".output/chrome-mv3/content-scripts/github-pr.js",
+      ".output/chrome-mv3/content-scripts/github-commit.js",
+      ".output/chrome-mv3/content-scripts/gitlab-mr.js"
+    ],
+    "limit": "2.35 MB",
+    "gzip": false,
+    "brotli": false
+  }
+]
