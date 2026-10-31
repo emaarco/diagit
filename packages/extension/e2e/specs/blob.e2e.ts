@@ -29,4 +29,13 @@ describe('GitHub blob viewer (content script)', () => {
 
     await expect(host.shadow$('.djs-element')).toBeExisting()
   })
+
+  it('renders an Excalidraw scene as an image inside the shadow root', async () => {
+    await browser.url('/octo/sketches/blob/main/board.excalidraw')
+
+    const host = $('diagit-viewer')
+    await host.waitForExist({ timeout: 20_000 })
+
+    await expect(host.shadow$('img.excalidraw-image')).toBeDisplayed()
+  })
 })

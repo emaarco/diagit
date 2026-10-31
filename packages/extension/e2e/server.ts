@@ -80,7 +80,7 @@ function serveStatic(path: string, res: import('node:http').ServerResponse): boo
 }
 
 /** The raw diagram bytes for a `.../raw/...` request, chosen by file extension. */
-const SAMPLE_EXTENSIONS = ['.dmn', '.owm', '.tt', '.storm', '.cm', '.vc.json']
+const SAMPLE_EXTENSIONS = ['.dmn', '.owm', '.tt', '.storm', '.cm', '.vc.json', '.excalidraw']
 
 function rawDiagram(path: string): Buffer {
   const extension = SAMPLE_EXTENSIONS.find((candidate) => path.toLowerCase().endsWith(candidate))

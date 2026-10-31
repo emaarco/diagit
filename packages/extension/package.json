@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@diagit/bpmn-diff": "*",
+    "@excalidraw/utils": "0.1.8",
     "@miragon/context-maps-renderer": "0.6.1",
     "@miragon/event-storming-renderer": "0.5.1",
     "@miragon/team-topologies-renderer": "0.13.2",

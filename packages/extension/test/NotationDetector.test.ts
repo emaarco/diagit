@@ -54,6 +54,7 @@ describe('NotationDetector', () => {
       '.cm.json',
       '.vc',
       '.vc.json',
+      '.excalidraw',
     ])
   })
 })

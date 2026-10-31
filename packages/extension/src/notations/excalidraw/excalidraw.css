@@ -1,0 +1,19 @@
+.excalidraw-canvas {
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+.excalidraw-canvas:active {
+  cursor: grabbing;
+}
+
+.excalidraw-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}

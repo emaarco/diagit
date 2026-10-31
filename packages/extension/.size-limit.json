@@ -2,21 +2,21 @@
   {
     "name": "Chrome artifact",
     "path": ".output/chrome-mv3/**",
-    "limit": "8.8 MB",
+    "limit": "10.9 MB",
     "gzip": false,
     "brotli": false
   },
   {
     "name": "Firefox artifact",
     "path": ".output/firefox-mv3/**",
-    "limit": "8.8 MB",
+    "limit": "10.9 MB",
     "gzip": false,
     "brotli": false
   },
   {
     "name": "Blob content scripts",
     "path": ".output/chrome-mv3/content-scripts/*-blob.js",
-    "limit": "4.4 MB",
+    "limit": "5.8 MB",
     "gzip": false,
     "brotli": false
   },

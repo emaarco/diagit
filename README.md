@@ -4,8 +4,8 @@
 [![license](https://img.shields.io/github/license/emaarco/diagit)](./LICENSE)
 
 > A browser extension (Chrome, Edge, Firefox) that renders **diagram models
-> inline** (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps and
-> Value Chains) on GitLab and GitHub — and shows a **visual before/after diff** in
+> inline** (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps,
+> Value Chains and Excalidraw) on GitLab and GitHub — and shows a **visual before/after diff** in
 > merge and pull requests.
 
 ![On a GitHub pull request, the changed .bpmn file switches from the plain diagram to a before/after diff, then steps through the added, changed and moved elements](assets/demo.gif)
@@ -22,7 +22,8 @@ before/after view.
 It's built on the [bpmn.io](https://bpmn.io) toolkits
 ([bpmn-js](https://github.com/bpmn-io/bpmn-js),
 [dmn-js](https://github.com/bpmn-io/dmn-js)) and the Miragon modeler renderers
-(Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains), and grew out of two internal
+(Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains), plus
+[Excalidraw](https://github.com/excalidraw/excalidraw)'s own export code, and grew out of two internal
 Tampermonkey userscripts, now reworked into a tested, store-ready extension.
 
 ## Features
@@ -55,6 +56,7 @@ Tampermonkey userscripts, now reworked into a tested, store-ready extension.
 | Event Storming  | `.storm`           | yes           | no           |
 | Context Map     | `.cm`, `.cm.json`  | yes           | no           |
 | Value Chain     | `.vc`, `.vc.json`  | yes           | no           |
+| Excalidraw      | `.excalidraw`      | yes           | no           |
 
 ## Install
 

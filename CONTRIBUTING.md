@@ -212,7 +212,8 @@ Every notation lives in its own folder `src/notations/<notation>/` and never imp
    It must stay free of viewer imports, because git hosts load it to detect files.
 2. A class implementing `Notation` (viewer, CSS), registered in `allNotations.ts`. A
    diagram-js based renderer extends `DiagramJsNotation` and only creates the diagram and
-   imports the file (see `wardley-map/WardleyMapNotation.ts`).
+   imports the file (see `wardley-map/WardleyMapNotation.ts`). Any other renderer implements
+   `DiagramViewer` itself (see `excalidraw/ExcalidrawViewer.ts`).
 3. For diff support: a `packages/<notation>-diff` workspace with the framework-free diff
    (like `packages/bpmn-diff`), a `DiagramDiffer` in the notation folder, `diffable: true`
    and an entry in `diffableNotations.ts`.

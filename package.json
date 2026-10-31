@@ -2,7 +2,7 @@
   "name": "diagit",
   "version": "0.0.0",
   "private": true,
-  "description": "Browser extension that renders and diffs diagram models (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains) inline on GitLab & GitHub — plus a standalone viewer.",
+  "description": "Browser extension that renders and diffs diagram models (BPMN, DMN, Wardley Maps, Team Topologies, Event Storming, Context Maps, Value Chains, Excalidraw) inline on GitLab & GitHub — plus a standalone viewer.",
   "type": "module",
   "license": "MIT",
   "author": "Marco Schäck (https://github.com/emaarco)",

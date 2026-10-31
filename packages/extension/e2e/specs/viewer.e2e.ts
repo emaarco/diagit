@@ -9,7 +9,7 @@ import { browser, $, $$, expect } from '@wdio/globals'
  */
 const fixtures = join(dirname(fileURLToPath(import.meta.url)), '..', 'fixtures')
 
-async function expectRenders(fixture: string): Promise<void> {
+async function openFixture(fixture: string): Promise<void> {
   await browser.url('/viewer.html')
   const input = await $('input[type=file]')
   await input.waitForExist()
@@ -19,6 +19,10 @@ async function expectRenders(fixture: string): Promise<void> {
     ;(el as HTMLElement).style.display = 'block'
   }, input)
   await input.setValue(join(fixtures, fixture))
+}
+
+async function expectRenders(fixture: string): Promise<void> {
+  await openFixture(fixture)
   await expect($$('.canvas svg')).toBeElementsArrayOfSize({ gte: 1 })
   await expect($$('.djs-element')).toBeElementsArrayOfSize({ gte: 1 })
 }
@@ -48,4 +52,9 @@ describe('standalone viewer page', () => {
       await expectRenders(fixture)
     })
   }
+
+  it('renders a .excalidraw file as an image', async () => {
+    await openFixture('sample.excalidraw')
+    await expect($('.canvas img.excalidraw-image')).toBeDisplayed()
+  })
 })

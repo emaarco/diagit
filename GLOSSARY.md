@@ -1,7 +1,7 @@
 # Glossary
 
 **Notation** — a kind of diagram the extension can render, identified by its file extensions
-(BPMN, DMN, Wardley Map, Team Topologies, Event Storming, Context Map, Value Chain).
+(BPMN, DMN, Wardley Map, Team Topologies, Event Storming, Context Map, Value Chain, Excalidraw).
 _Avoid_: kind, diagram type, model type.
 
 **Git host** — a site that serves repository files, such as github.com, gitlab.com or a
