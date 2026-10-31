@@ -1,6 +1,6 @@
 # `@diagit/extension`
 
-> The browser extension (Chrome, Edge, Firefox) — renders **BPMN, DMN and the Miragon notations inline**
+> The browser extension (Chrome, Edge, Firefox) — renders **BPMN, DMN, the Miragon notations and Excalidraw inline**
 > on GitLab & GitHub and shows a **before/after diff** in pull/merge requests.
 
 ## Why
