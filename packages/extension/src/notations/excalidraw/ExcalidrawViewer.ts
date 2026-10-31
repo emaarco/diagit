@@ -7,6 +7,7 @@ import { renderSceneSvg } from './utils/renderSceneSvg'
 const FIT_PADDING = 32
 const MAX_FIT_SCALE = 1
 const WHEEL_ZOOM_SPEED = 0.002
+const MAIN_BUTTON = 0
 
 export class ExcalidrawViewer implements DiagramViewer {
   static async create(canvas: HTMLElement, source: string): Promise<ExcalidrawViewer> {
@@ -14,6 +15,7 @@ export class ExcalidrawViewer implements DiagramViewer {
     const image = h('img', {
       class: 'excalidraw-image',
       alt: 'Excalidraw diagram',
+      draggable: 'false',
       src: await renderSceneSvg(scene, detectHostTheme(canvas)),
     })
     await image.decode()
@@ -39,11 +41,14 @@ export class ExcalidrawViewer implements DiagramViewer {
     const { clientWidth, clientHeight } = this.canvas
     const { naturalWidth, naturalHeight } = this.image
     if (clientWidth === 0 || clientHeight === 0) return
-    this.scale = Math.min(
-      (clientWidth - 2 * FIT_PADDING) / naturalWidth,
-      (clientHeight - 2 * FIT_PADDING) / naturalHeight,
-      MAX_FIT_SCALE,
-    )
+    const scaleWithPadding = (padding: number) =>
+      Math.min(
+        (clientWidth - 2 * padding) / naturalWidth,
+        (clientHeight - 2 * padding) / naturalHeight,
+        MAX_FIT_SCALE,
+      )
+    const paddedScale = scaleWithPadding(FIT_PADDING)
+    this.scale = paddedScale > 0 ? paddedScale : scaleWithPadding(0)
     this.x = (clientWidth - naturalWidth * this.scale) / 2
     this.y = (clientHeight - naturalHeight * this.scale) / 2
     this.applyTransform()
@@ -66,6 +71,7 @@ export class ExcalidrawViewer implements DiagramViewer {
   }
 
   private readonly startPan = (start: PointerEvent): void => {
+    if (start.button !== MAIN_BUTTON || !start.isPrimary) return
     const originX = start.clientX - this.x
     const originY = start.clientY - this.y
     const pan = new AbortController()

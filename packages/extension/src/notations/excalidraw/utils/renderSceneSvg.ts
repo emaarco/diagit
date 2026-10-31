@@ -7,7 +7,7 @@ const FONT_FACES = `
   @font-face { font-family: "Excalifont"; src: url(${excalifontLatin}); }
   @font-face { font-family: "Virgil"; src: url(${virgil}); }
 `
-const GENERIC_FONT_FALLBACK = 'sans-serif'
+const DEFAULT_CANVAS_BACKGROUND = '#ffffff'
 
 export async function renderSceneSvg(scene: ExportSceneData, theme: Theme): Promise<string> {
   const svg = await exportScene({
@@ -15,18 +15,17 @@ export async function renderSceneSvg(scene: ExportSceneData, theme: Theme): Prom
     data: scene,
     config: {
       theme,
-      canvasBackgroundColor: false,
+      canvasBackgroundColor: customBackgroundOf(scene),
       skipInliningFonts: true,
       environment: { loadFonts: async () => {} },
     },
   })
   svg.querySelector('style.style-fonts')?.append(FONT_FACES)
-  for (const text of svg.querySelectorAll('text')) {
-    text.setAttribute(
-      'font-family',
-      `${text.getAttribute('font-family')}, ${GENERIC_FONT_FALLBACK}`,
-    )
-  }
   const markup = new XMLSerializer().serializeToString(svg)
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(markup)}`
+}
+
+function customBackgroundOf(scene: ExportSceneData): string | false {
+  const background = scene.appState?.viewBackgroundColor
+  return background && background !== DEFAULT_CANVAS_BACKGROUND ? background : false
 }
